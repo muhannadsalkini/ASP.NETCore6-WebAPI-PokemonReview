@@ -1,2 +1,2 @@
 # ASP.NET-Web-PokemonReviewApp
-A API web application to understand ASP.NET Core Web API
+An web application to understand ASP.NET Core 6.0v Web API
