@@ -1,3 +1,23 @@
-1. Crate the project (ASP.NET Web API)
-2. Create Models foleder and creat into it the model classes
-3. Add relationships to the models (Many-To-Many, One-To-Many..)
+1.1 Crate the project (ASP.NET Web API)
+1.2 Create database and tables in MSSQL
+
+2.1 Create Models foldeder and creat into it the model classes
+2.2 Add relationships to the models (Many-To-Many, One-To-Many..)
+
+3.1 https://www.youtube.com/watch?v=EmV_IBYIlyo&list=PL82C6-O4XrHdiS10BLh23x71ve9mQCln0&index=5
+3.2 Connect to Database;
+	a) Search for "SQL server Object Explorere"
+	b) Click to "Add SQL Server" (Green button)
+	c) Copy server name from MSSQL and paste it (Server name: MUHOHAN)
+	d) Chose Database Name than click to connect
+	e) Go to ServerName/System Databse and right click on DatabaseName to open Properies 
+	f) Copy "Connection String" 
+	g) Paste "Connection String" in appsettings.json file like below; 
+	"ConnectionStrings": {
+    		"DefaultConnection": "ConnectionString"
+  	},
+
+3.3 Installing Entity Framework
+3.4 Creating DataContext
+3.5 Program File Setup
+3.6 Seeding
