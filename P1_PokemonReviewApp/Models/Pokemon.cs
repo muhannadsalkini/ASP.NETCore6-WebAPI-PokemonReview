@@ -8,6 +8,9 @@
         public ICollection<Review> Reviews { get; set; } // Many Relationship
         // Using ICollecton becouse Reviews is a list of objects
 
+        public ICollection<PokemonCategory> PokemonCategories { get; set; } // Many Relationship
+        public ICollection<PokemonOwner> PokemonOwners { get; set; } // Many Relationship
+
     }
 }
 

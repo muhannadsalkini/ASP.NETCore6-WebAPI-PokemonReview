@@ -1,3 +1,3 @@
 1. Crate the project (ASP.NET Web API)
 2. Create Models foleder and creat into it the model classes
-3.
+3. Add relationships to the models (Many-To-Many, One-To-Many..)

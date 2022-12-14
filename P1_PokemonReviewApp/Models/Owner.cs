@@ -6,5 +6,7 @@
         public string Name { get; set; }
         public string Gym { get; set; }
         public Country Country { get; set; } // One Relationship
+
+        public ICollection<PokemonOwner> PokemonOwners { get; set; } // Many Relationship
     }
 }
