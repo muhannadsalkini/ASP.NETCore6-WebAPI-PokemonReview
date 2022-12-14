@@ -5,6 +5,8 @@
         public int Id { get; set; } // column
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
+        public ICollection<Review> Reviews { get; set; } // Many Relationship
+        // Using ICollecton becouse Reviews is a list of objects
 
     }
 }
