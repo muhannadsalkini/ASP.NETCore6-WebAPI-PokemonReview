@@ -1,0 +1,3 @@
+﻿Dto limits data Sending or Reciving from the API
+
+ex: We dont want to get user hash or credit card information so we can limit data Reciving
