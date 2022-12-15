@@ -1,7 +1,7 @@
 1.1 Crate the project (ASP.NET Web API)
 1.2 Create database and tables in MSSQL
 
-2.1 Create Models foldeder and creat into it the model classes
+2.1 Create "Models" folder and creat into it the model classes
 2.2 Add relationships to the models (Many-To-Many, One-To-Many..)
 
 3.1 https://www.youtube.com/watch?v=EmV_IBYIlyo&list=PL82C6-O4XrHdiS10BLh23x71ve9mQCln0&index=5

@@ -11,7 +11,7 @@ namespace P1_PokemonReviewApp.Data
 
         }
 
-        // Database Tables
+        // Acesess to Database Tables
         public DbSet<Category> Categories { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<Owner> Owners { get; set; }
