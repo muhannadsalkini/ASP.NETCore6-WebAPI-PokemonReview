@@ -1,8 +1,11 @@
-﻿namespace P1_PokemonReviewApp.Models
+﻿using Microsoft.Build.Framework;
+
+namespace P1_PokemonReviewApp.Models
 {
-    public class Pokemon // table
+    public class Pokemon // Table
     {
-        public int Id { get; set; } // column
+        public int Id { get; set; } // Column
+        //[Required]
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
         public ICollection<Review> Reviews { get; set; } // Many Relationship

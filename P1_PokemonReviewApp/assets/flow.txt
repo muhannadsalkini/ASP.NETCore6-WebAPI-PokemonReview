@@ -21,3 +21,10 @@
 3.4 Creating DataContext
 3.5 Program File Setup
 3.6 Seeding
+	Add-Migration InitialCreate
+	Update-Database
+	run seed
+
+4.1 Add Repository Pattern
+
+5.1 Add GET & Read Methods
