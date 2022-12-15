@@ -1,0 +1,6 @@
+﻿namespace P1_PokemonReviewApp
+{
+    public class test
+    {
+    }
+}
