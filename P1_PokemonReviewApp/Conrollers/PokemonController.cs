@@ -5,9 +5,9 @@ using P1_PokemonReviewApp.Models;
 
 namespace P1_PokemonReviewApp.Conrollers
 {
-    [Microsoft.AspNetCore.Mvc.Route("api/[controller]")]
+    [Microsoft.AspNetCore.Components.Route("api/[controller]")]
     [ApiController]
-    public class PokemonController : Controller
+    public class PokemonController : Controller // Inhereted from controller
     {
         private readonly IPokemonRepository _pokemonRepository;
         public PokemonController(IPokemonRepository pokemonRepository)
