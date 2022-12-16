@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using P1_PokemonReviewApp.Dto;
 using P1_PokemonReviewApp.Interface;
@@ -12,9 +13,11 @@ namespace P1_PokemonReviewApp.Conrollers
     public class CategoryController : Controller // Inhereted from controller
     {
         private readonly ICategoryRepository _categoryRepository;
-        public CategoryController(ICategoryRepository categoryRepository) // 
+        private readonly IMapper _mapper;
+        public CategoryController(ICategoryRepository categoryRepository, IMapper mapper)
         {
-            this._categoryRepository = categoryRepository;
+            _categoryRepository = categoryRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -82,13 +85,13 @@ namespace P1_PokemonReviewApp.Conrollers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            //var categoryMap = _mapper.Map<Category>(categoryCreate);
+            var categoryMap = _mapper.Map<Category>(categoryCreate);
 
-            //if(!_categoryRepository.CreateCategory(categoryMap))
-            //{
-            //    ModelState.AddModelError("", "Something went wrong while saving");
-            //    return StatusCode(500, ModelState);
-            //}
+            if (!_categoryRepository.CreateCategory(categoryMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving");
+                return StatusCode(500, ModelState);
+            }
 
             return Ok("Successfuly created");
         }

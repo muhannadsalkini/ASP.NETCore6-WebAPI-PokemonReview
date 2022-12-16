@@ -1,6 +1,6 @@
 ﻿namespace P1_PokemonReviewApp.Dto
 {
-    public class PokimonDto
+    public class PokemonDto
     {
         public int Id { get; set; } // column
         public string Name { get; set; }

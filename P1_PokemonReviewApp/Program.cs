@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddTransient<Seed>(); // Seeding
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); // Auto Mapper
 builder.Services.AddScoped<IPokemonRepository, PokemonRepository>(); // to find the engection and run the controller
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICountryRepository, CountryRepository>();
