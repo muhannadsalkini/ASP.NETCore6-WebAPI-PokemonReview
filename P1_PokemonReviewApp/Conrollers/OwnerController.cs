@@ -10,9 +10,11 @@ namespace P1_PokemonReviewApp.Conrollers
     public class OwnerController : Controller
     {
         private readonly IOwnerRepository _ownerRepository;
-        public OwnerController(IOwnerRepository ownerRepository)
+        private readonly IPokemonRepository _pokemonRepository;
+        public OwnerController(IOwnerRepository ownerRepository, IPokemonRepository pokemonRepository)
         {
             this._ownerRepository = ownerRepository;
+            this._pokemonRepository = pokemonRepository;
         }
 
         [HttpGet]
@@ -64,7 +66,7 @@ namespace P1_PokemonReviewApp.Conrollers
         [ProducesResponseType(400)]
         public IActionResult GetOwnerOfAPokemon(int pokiId)
         {
-            if (!_ownerRepository.OwnerExists(pokiId))
+            if (!_pokemonRepository.PokemonExists(pokiId))
                 return NotFound();
 
             var owners = _ownerRepository.GetOwnerOfAPokemon(pokiId);

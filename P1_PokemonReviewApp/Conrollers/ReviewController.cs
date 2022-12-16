@@ -10,10 +10,12 @@ namespace P1_PokemonReviewApp.Conrollers
     public class ReviewController : Controller
     {
         private readonly IReviewRepository _reviewRepository;
+        private readonly IReviewerRepository _reviewerRepository;
 
-        public ReviewController(IReviewRepository reviewRepository)
+        public ReviewController(IReviewRepository reviewRepository, IReviewerRepository reviewerRepository)
         {
             this._reviewRepository = reviewRepository;
+            this._reviewerRepository = reviewerRepository;
         }
 
         [HttpGet]
@@ -65,8 +67,8 @@ namespace P1_PokemonReviewApp.Conrollers
         [ProducesResponseType(400)]
         public IActionResult GetReviewerReviews(int reviewerId) // Returning spesific line of data
         {
-            //if (!_reviewRepository.ReviewExisit(reviewerId))
-                //return NotFound();
+            if (!_reviewerRepository.ReviewerExisit(reviewerId))
+                return NotFound();
 
             var reviews = _reviewRepository.GetReviewerReviews(reviewerId);
 

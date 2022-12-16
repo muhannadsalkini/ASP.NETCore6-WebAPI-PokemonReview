@@ -35,7 +35,7 @@ namespace P1_PokemonReviewApp.Repository
 
         public bool ReviewExisit(int id)
         {
-            return _context.Pokemons.Any(r => r.Id == id);
+            return _context.Reviews.Any(r => r.Id == id);
         }
     }
 }

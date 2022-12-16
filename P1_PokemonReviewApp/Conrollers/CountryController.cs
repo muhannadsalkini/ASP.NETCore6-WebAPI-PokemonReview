@@ -10,9 +10,11 @@ namespace P1_PokemonReviewApp.Conrollers
     public class CountryController : Controller
     {
         private readonly ICountryRepository _countryRepository;
-        public CountryController(ICountryRepository countryRepository)
+        private readonly IOwnerRepository _ownerRepository;
+        public CountryController(ICountryRepository countryRepository, IOwnerRepository ownerRepository)
         {
             this._countryRepository = countryRepository;
+            this._ownerRepository = ownerRepository;
         }
 
         [HttpGet]
@@ -48,6 +50,10 @@ namespace P1_PokemonReviewApp.Conrollers
         [ProducesResponseType(400)]
         public IActionResult GetCountryOfAnOwner(int ownerId)
         {
+            
+           if(!_ownerRepository.OwnerExists(ownerId))
+                return NotFound();
+
             var country = _countryRepository.GetCountryByOwner(ownerId);
 
             if (!ModelState.IsValid)
