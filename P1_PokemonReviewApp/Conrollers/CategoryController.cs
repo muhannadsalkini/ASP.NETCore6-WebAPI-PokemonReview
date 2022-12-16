@@ -22,8 +22,7 @@ namespace P1_PokemonReviewApp.Conrollers
         {
             var categories = _categoryRepository.GetCategories(); // Get categories from Repository
 
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            
 
             return Ok(categories);
         }
@@ -44,7 +43,7 @@ namespace P1_PokemonReviewApp.Conrollers
             return Ok(category);
         }
 
-        [HttpGet("{pokemon/{catgoryId}")] // link
+        [HttpGet("pokemon/{catgoryId}")] // link
         [ProducesResponseType(200, Type = typeof(IEnumerable<Pokemon>))]
         [ProducesResponseType(400)]
         public IActionResult GetPokemonByCategoryId(int categoryId)

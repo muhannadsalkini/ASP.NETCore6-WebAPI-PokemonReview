@@ -28,6 +28,3 @@
 4.1 Add Repository Pattern
 
 5.1 Add GET & Read Methods
-	a) create interface
-	b) create repository
-	c) create controller
