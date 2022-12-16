@@ -22,7 +22,8 @@ namespace P1_PokemonReviewApp.Conrollers
         {
             var categories = _categoryRepository.GetCategories(); // Get categories from Repository
 
-            
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
             return Ok(categories);
         }
