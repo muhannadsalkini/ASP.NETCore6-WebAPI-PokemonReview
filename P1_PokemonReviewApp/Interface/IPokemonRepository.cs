@@ -9,5 +9,7 @@ namespace P1_PokemonReviewApp.Interface
         Pokemon GetPokemon(String name);
         decimal GetPokemonReviews(int pokeId);
         bool PokemonExists(int pokeId);
+        bool CreatePokemon(int ownerId, int categoryId, Pokemon pokemon); // Create data
+        bool Save();  // Save data
     }
 }

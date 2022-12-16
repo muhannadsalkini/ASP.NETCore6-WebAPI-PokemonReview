@@ -41,5 +41,37 @@ namespace P1_PokemonReviewApp.Repository
         {
             return _context.Pokemons.Any(p => p.Id == pokeId);
         }
+
+        public bool CreatePokemon(int ownerId, int categoryId, Pokemon pokemon) // Create a new data
+        {
+            var pokemonOwnerEntity = _context.Owners.Where(o => o.Id == ownerId).FirstOrDefault();
+            var category = _context.Categories.Where(c => c.Id == categoryId).FirstOrDefault();
+
+            var pokemonOwner = new PokemonOwner() // Inster into PokemonOwner tabel
+            {
+                Owner = pokemonOwnerEntity,
+                Pokemon = pokemon,
+            };
+
+            _context.Add(pokemonOwner); // Add pokemonOwner to the Add query
+
+            var pokemonCategory = new PokemonCategory() // Inser into PokemonCategory table
+            {
+                Category = category,
+                Pokemon = pokemon,
+            };
+
+            _context.Add(pokemonCategory); // Add pokemonCategory to the Add query
+
+            _context.Add(pokemon); // Add pokemon to the Add query
+
+            return Save();
+        }
+
+        public bool Save() // Save data changing
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false; // if saved retun ture; else return false
+        }
     }
 }
