@@ -6,7 +6,7 @@ using P1_PokemonReviewApp.Repository;
 
 namespace P1_PokemonReviewApp.Conrollers
 {
-    [Route("api/[controller]")]
+    [Microsoft.AspNetCore.Mvc.Route("api/[controller]")]
     [ApiController]
     public class CategoryController : Controller // Inhereted from controller
     {

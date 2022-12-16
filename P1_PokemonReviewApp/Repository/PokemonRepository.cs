@@ -34,7 +34,7 @@ namespace P1_PokemonReviewApp.Repository
 
         public ICollection<Pokemon> GetPokemons() // ICollection can only be a readable list
         {
-            return this._context.Pokemons.OrderBy(p => p.Id).ToList(); // Return list of data
+            return _context.Pokemons.OrderBy(p => p.Id).ToList(); // Return list of data
         }
 
         public bool PokemonExists(int pokeId)

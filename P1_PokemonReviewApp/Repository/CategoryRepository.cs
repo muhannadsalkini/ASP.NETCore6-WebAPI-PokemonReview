@@ -4,10 +4,10 @@ using P1_PokemonReviewApp.Models;
 
 namespace P1_PokemonReviewApp.Repository
 {
-    public class CaregoryRepository : ICategoryRepository // "ctrl ." to see the error
+    public class CategoryRepository : ICategoryRepository // "ctrl ." to see the error
     {
         private DataContext _context;
-        public CaregoryRepository(DataContext context)
+        public CategoryRepository(DataContext context)
         {
             this._context = context;
         }
