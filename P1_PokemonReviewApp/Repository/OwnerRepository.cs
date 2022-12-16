@@ -11,7 +11,7 @@ namespace P1_PokemonReviewApp.Repository
         {
             this._context = context;
         }
-        public ICollection<Owner> GetOnwes()
+        public ICollection<Owner> GetOwners()
         {
             return _context.Owners.OrderBy(o => o.Id).ToList();
         }
@@ -34,6 +34,18 @@ namespace P1_PokemonReviewApp.Repository
         public bool OwnerExists(int ownerId)
         {
             return _context.Owners.Any(c => c.Id == ownerId); // Any returns a bool
+        }
+
+        public bool CreateOwner(Owner owner) // Create a new data
+        {
+            _context.Add(owner);
+            return Save();
+        }
+
+        public bool Save() // Save data changing
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false; // if saved retun ture; else return false
         }
     }
 }
