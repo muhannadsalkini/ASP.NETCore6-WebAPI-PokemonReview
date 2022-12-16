@@ -13,6 +13,7 @@ builder.Services.AddTransient<Seed>(); // Seeding
 builder.Services.AddScoped<IPokemonRepository, PokemonRepository>(); // to find the engection and run the controller
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICountryRepository, CountryRepository>();
+builder.Services.AddScoped<IOwnerRepository, OwnerRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
