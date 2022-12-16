@@ -36,5 +36,17 @@ namespace P1_PokemonReviewApp.Repository
         {
             return _context.Owners.Where(o => o.Country.Id == countryId).ToList();
         }
+
+        public bool CreateCountry(Country country) // Create a new data
+        {
+            _context.Add(country);
+            return Save();
+        }
+
+        public bool Save() // Save data changing
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false; // if saved retun ture; else return false
+        }
     }
 }

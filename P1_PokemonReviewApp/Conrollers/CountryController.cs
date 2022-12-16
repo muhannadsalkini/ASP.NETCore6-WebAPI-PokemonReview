@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using P1_PokemonReviewApp.Dto;
 using P1_PokemonReviewApp.Interface;
 using P1_PokemonReviewApp.Models;
 using P1_PokemonReviewApp.Repository;
+using PokemonReviewApp.Dto;
 
 namespace P1_PokemonReviewApp.Conrollers
 {
@@ -11,10 +14,12 @@ namespace P1_PokemonReviewApp.Conrollers
     {
         private readonly ICountryRepository _countryRepository;
         private readonly IOwnerRepository _ownerRepository;
-        public CountryController(ICountryRepository countryRepository, IOwnerRepository ownerRepository)
+        private readonly IMapper _mapper;
+        public CountryController(ICountryRepository countryRepository, IOwnerRepository ownerRepository, IMapper mapper)
         {
             this._countryRepository = countryRepository;
             this._ownerRepository = ownerRepository;
+            this._mapper = mapper;
         }
 
         [HttpGet]
@@ -60,6 +65,38 @@ namespace P1_PokemonReviewApp.Conrollers
                 return BadRequest();
 
             return Ok(country);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateCategory([FromBody] CountryDto countryCreate)
+        {
+            if (countryCreate == null)
+                return BadRequest(ModelState);
+
+            var country = _countryRepository.GetCountries()
+                .Where(c => c.Name.Trim().ToUpper() == countryCreate.Name.TrimEnd().ToUpper())
+                .FirstOrDefault();
+
+            if (country != null)
+            {
+                ModelState.AddModelError("", "Country already exists");
+                return StatusCode(422, ModelState);
+            }
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var countryMap = _mapper.Map<Country>(countryCreate);
+
+            if (!_countryRepository.CreateCountry(countryMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfuly created");
         }
     }
 }
