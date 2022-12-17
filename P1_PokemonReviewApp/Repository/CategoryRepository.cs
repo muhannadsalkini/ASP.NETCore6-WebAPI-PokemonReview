@@ -55,10 +55,18 @@ namespace P1_PokemonReviewApp.Repository
             return Save();
         }
 
+        public bool DeleteCategory(Category category) // Delete data
+        {
+            _context.Remove(category);
+            return Save();
+        }
+
         public bool Save() // Save data changing
         {
             var saved = _context.SaveChanges();
             return saved > 0 ? true : false; // if saved retun ture; else return false
         }
+
+        
     }
 }
