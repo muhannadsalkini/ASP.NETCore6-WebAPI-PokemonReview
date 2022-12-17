@@ -98,5 +98,37 @@ namespace P1_PokemonReviewApp.Conrollers
 
             return Ok("Successfuly created");
         }
+
+        [HttpPut("{countryId}")] // put
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateCountry(int countryId, [FromBody] CountryDto countryUpdate)
+        {
+            if (countryUpdate == null)
+                return BadRequest(ModelState);
+
+            if (countryId != countryUpdate.Id)
+            {
+                ModelState.AddModelError("", "This countryId dose not exist!");
+                return BadRequest(ModelState);
+            }
+
+            if (!_countryRepository.CountryExists(countryId))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var countyMap = _mapper.Map<Country>(countryUpdate);
+
+            if (!_countryRepository.UpdateCountry(countyMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while updating");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfuly updated");
+        }
     }
 }

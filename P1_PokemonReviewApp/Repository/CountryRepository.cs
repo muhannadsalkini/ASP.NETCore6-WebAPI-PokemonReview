@@ -1,6 +1,7 @@
 ﻿using P1_PokemonReviewApp.Data;
 using P1_PokemonReviewApp.Interface;
 using P1_PokemonReviewApp.Models;
+using System.Diagnostics.Metrics;
 
 namespace P1_PokemonReviewApp.Repository
 {
@@ -40,6 +41,12 @@ namespace P1_PokemonReviewApp.Repository
         public bool CreateCountry(Country country) // Create a new data
         {
             _context.Add(country);
+            return Save();
+        }
+
+        public bool UpdateCountry(Country country) // Update an exisit data
+        {
+            _context.Update(country);
             return Save();
         }
 
