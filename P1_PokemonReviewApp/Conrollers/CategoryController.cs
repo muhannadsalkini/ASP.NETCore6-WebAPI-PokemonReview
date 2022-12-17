@@ -37,7 +37,7 @@ namespace P1_PokemonReviewApp.Conrollers
         [ProducesResponseType(400)] // response error
         public IActionResult getCategory(int categoryId) // Returning spesific line of data
         {
-            if (!_categoryRepository.CategoryExisit(categoryId))
+            if (!_categoryRepository.CategoryExist(categoryId))
                 return NotFound();
 
             var category = _categoryRepository.GetCategory(categoryId);
@@ -53,7 +53,7 @@ namespace P1_PokemonReviewApp.Conrollers
         [ProducesResponseType(400)]
         public IActionResult GetPokemonByCategoryId(int categoryId)
         {
-            if (!_categoryRepository.CategoryExisit(categoryId))
+            if (!_categoryRepository.CategoryExist(categoryId))
                 return NotFound();
 
             var pokemons = _categoryRepository.GetPokemonsByCategory(categoryId);
@@ -111,7 +111,7 @@ namespace P1_PokemonReviewApp.Conrollers
                 return BadRequest(ModelState);
             }
 
-            if (!_categoryRepository.CategoryExisit(categoryId))
+            if (!_categoryRepository.CategoryExist(categoryId))
                 return NotFound();
 
             if(!ModelState.IsValid)

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using P1_PokemonReviewApp.Dto;
 using P1_PokemonReviewApp.Interface;
 using P1_PokemonReviewApp.Models;
 using P1_PokemonReviewApp.Repository;
@@ -115,6 +116,38 @@ namespace P1_PokemonReviewApp.Conrollers
             }
 
             return Ok("Successfuly created");
+        }
+
+        [HttpPut("{ownerId}")] // put
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateCategory([FromQuery] int countryId, int ownerId, [FromBody] OwnerDto ownerUpdate)
+        {
+            if (ownerUpdate == null)
+                return BadRequest(ModelState);
+
+            if (ownerId != ownerUpdate.Id)
+            {
+                ModelState.AddModelError("", "This ownerId dose not exist!");
+                return BadRequest(ModelState);
+            }
+            if (!_ownerRepository.OwnerExists(ownerId))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var ownerMap = _mapper.Map<Owner>(ownerUpdate);
+            ownerMap.Country = _countryRepository.GetCountry(countryId);
+
+            if (!_ownerRepository.UpdateOwner(ownerMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while updating");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfuly updated");
         }
     }
 }

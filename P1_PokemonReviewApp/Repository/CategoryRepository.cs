@@ -13,7 +13,7 @@ namespace P1_PokemonReviewApp.Repository
             this._context = context;
         }
 
-        public bool CategoryExisit(int id) // Check if there are a category with this id number
+        public bool CategoryExist(int id) // Check if there are a category with this id number
         {
             return _context.Categories.Any(c => c.Id == id); // Any returns a bool
         }

@@ -42,10 +42,17 @@ namespace P1_PokemonReviewApp.Repository
             return Save();
         }
 
+        public bool UpdateOwner(Owner owner) // Update an exisit data
+        {
+            _context.Update(owner);
+            return Save();
+        }
+
         public bool Save() // Save data changing
         {
             var saved = _context.SaveChanges();
             return saved > 0 ? true : false; // if saved retun ture; else return false
         }
+        
     }
 }
