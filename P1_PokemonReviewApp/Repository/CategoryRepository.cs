@@ -18,16 +18,6 @@ namespace P1_PokemonReviewApp.Repository
             return _context.Categories.Any(c => c.Id == id); // Any returns a bool
         }
 
-        public bool CreateCategory(Category category) // Create a new data
-        {
-            // Change Tracker
-            // add, update, modify..
-            // conncted or disconnected
-            // EntityState.Added => disconnected state
-            _context.Add(category);
-            return Save();
-        }
-
         public ICollection<Category> GetCategories()
         {
             return _context.Categories.OrderBy(p => p.Id).ToList();
@@ -47,6 +37,22 @@ namespace P1_PokemonReviewApp.Repository
         public ICollection<Pokemon> GetPokemonByCategory(int categoryId)
         {
             return _context.PokemonCategories.Where(e => e.CategoryId == categoryId).Select(c => c.Pokemon).ToList();
+        }
+
+        public bool CreateCategory(Category category) // Create a new data
+        {
+            // Change Tracker
+            // add, update, modify..
+            // conncted or disconnected
+            // EntityState.Added => disconnected state
+            _context.Add(category);
+            return Save();
+        }
+
+        public bool UpdateCategory(Category category) // Update an exisit data
+        {
+            _context.Update(category);
+            return Save();
         }
 
         public bool Save() // Save data changing
