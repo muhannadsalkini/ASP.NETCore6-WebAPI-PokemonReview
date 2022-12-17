@@ -7,5 +7,7 @@ namespace P1_PokemonReviewApp.Interface
         ICollection<Reviewer> GetReviewers();
         Reviewer GetReviewer(int id);
         bool ReviewerExisit(int id);
+        bool CreateReviewer(Reviewer reviewer);
+        bool Save();
     }
 }

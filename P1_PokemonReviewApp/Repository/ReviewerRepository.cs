@@ -1,7 +1,8 @@
 ﻿using P1_PokemonReviewApp.Data;
+using P1_PokemonReviewApp.Interface;
 using P1_PokemonReviewApp.Models;
 
-namespace P1_PokemonReviewApp.Interface
+namespace P1_PokemonReviewApp.Repository
 {
     public class ReviewerRepository : IReviewerRepository
     {
@@ -9,7 +10,7 @@ namespace P1_PokemonReviewApp.Interface
 
         public ReviewerRepository(DataContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public Reviewer GetReviewer(int id)
@@ -25,6 +26,18 @@ namespace P1_PokemonReviewApp.Interface
         public bool ReviewerExisit(int id)
         {
             return _context.Reviewers.Any(rv => rv.Id == id);
+        }
+
+        public bool CreateReviewer(Reviewer reviewer) // Create a new data
+        {
+            _context.Add(reviewer);
+            return Save();
+        }
+
+        public bool Save() // Save data changing
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false; // if saved retun ture; else return false
         }
     }
 }
